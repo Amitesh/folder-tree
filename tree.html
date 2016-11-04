@@ -110,7 +110,41 @@
     // var result = stringify(tree).join("\n");
     console.log(JSON.stringify(tree, null, '\t'));
 
-    $('#tree').tree({data: tree});
+    $('#tree').tree({data: tree, autoOpen: true});
+
+    $('#tree').bind(
+        'tree.select',
+        function(event) {
+            if (event.node) {
+                // node was selected
+                var node = event.node;
+                getFolderPath(node);
+            }else{
+                // event.node is null
+                // a node was deselected
+                // e.previous_node contains the deselected node
+            }
+        }
+    );
+
+    function getFolderPath(node){
+        var path = node.name;
+        var parent = node.parent;
+        
+        // Add forwad slash for folders
+        if(node.children.length > 0){
+            path = path + '/';
+        }
+
+        while(parent){
+            if(parent.name){
+                path = parent.name + '/' + path;
+            }
+            parent = parent.parent;
+        }
+
+        return path;
+    }
 
     //# sourceURL=pen.js
     </script>
