@@ -6,11 +6,296 @@
     <link rel="stylesheet" href="http://mbraak.github.io/jqTree/jqtree.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqtree/1.3.5/tree.jquery.min.js"></script>
+    <style type="text/css">
+        /*  more info: https://github.com/artlung/Plain-jqTree-Theme */
+        
+        .jqtree-tree {
+            font-family: calibri, arial, helvetica, "helvetica neue", sans-serif;
+            line-height: 1;
+            position: relative;
+            font-size: 12px;
+            font-weight: normal;
+            width: 355px;
+            background-color: transparent;
+            /*background-image: url(https://raw.githubusercontent.com/artlung/Plain-jqTree-Theme/master/images/rows-20px.png);*/
+        }
+        
+        div.jqtree-element {}
+        
+        .jqtree-tree .jqtree-title {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0 0 0 0;
+        }
+        
+        .jqtree-tree .jqtree-title a,
+        .jqtree-tree .jqtree-title b {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            height: 20px;
+            line-height: 1.8;
+        }
+        
+        ul.jqtree-tree {
+            padding: 0 0 0 0;
+        }
+        
+        ul.jqtree_common {
+            margin: 0;
+            padding: 0 0 0 0;
+        }
+        
+        ul li.jqtree_common {
+            padding: 0 0 0 20px;
+            margin: 0 0 0 5px;
+            min-height: 19px;
+            text-overflow: ellipsis;
+            list-style-type: none;
+            background-image: url(https://raw.githubusercontent.com/artlung/Plain-jqTree-Theme/master/images/treeview-default-line.png);
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            position: relative;
+        }
+        
+        span.jqtree_common {
+            display: block;
+        }
+        
+        ul.jqtree_common li ul.jqtree_common li:last-child {
+            background-position: 0 -1766px;
+        }
+        
+        ul.jqtree_common>li:last-child,
+        ul.jqtree-tree>li:last-child {
+            background-position: 0 -1766px;
+        }
+        
+        ul.jqtree_common li ul.jqtree_common {}
+        
+        ul.jqtree_common li ul.jqtree_common li {}
+        
+        ul.jqtree_common li ul.jqtree_common li ul.jqtree_common {}
+        
+        ul.jqtree_common li ul.jqtree_common li ul.jqtree_common li {}
+        
+        .jqtree-tree *:focus {
+            outline: 1px dotted #ccc;
+        }
+        
+        ul.jqtree_common .jqtree-toggler {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-image: url(https://raw.githubusercontent.com/artlung/Plain-jqTree-Theme/master/images/minusplus.png);
+            background-repeat: no-repeat;
+            background-position: 50% 0;
+            text-indent: 100px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .jqtree .jqtree_common.jqtree-title {
+            display: block;
+        }
+        
+        ul.jqtree_common .jqtree-toggler.jqtree-closed {
+            background-position: 50% 100%;
+        }
+        
+        .jqtree-closed ul {
+            display: none;
+        }
+        /* modified by Amitesh */
+        
+        ul.jqtree-tree .jqtree-title {
+            color: #1C4257;
+            vertical-align: middle;
+            margin-left: 20px;
+            padding-top: 4px;
+        }
+        
+        ul.jqtree-tree .jqtree-title.jqtree-title-folder {
+            margin-left: 20px;
+            padding-top: 3px;
+        }
+        
+        ul li.jqtree_common {
+            padding: 0;
+        }
+        
+        ul.jqtree-tree li.jqtree-folder {
+            margin-bottom: 0px;
+        }
+        
+        #tree ul.jqtree-tree li.jqtree-selected > .jqtree-element .jqtree-title, 
+        #tree ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover .jqtree-title{
+            background: #57b8f7;
+            color: #fff;
+            text-shadow: 0px 1px 0px #333;
+            padding: 1px 3px 3px;
+            border-radius: 3px;
+            border: 1px solid #0190bd;
+        }
+    </style>
+    <style>
+    /*
+    .sprite-img{
+        display: inline-block;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-image: url(http://www.jqueryscript.net/demo/Powerful-Multi-Functional-jQuery-Folder-Tree-Plugin-zTree/css/zTreeStyle/img/zTreeStandard.png);
+    }
+
+    .closed{
+        width: 18px;
+        height: 18px;
+        background-position: -74px -18px;
+    }
+    .opened{
+        width: 18px;
+        height: 18px;
+        background-position: -92px 0;
+    }
+
+    .single.first.opened{
+        background-position:-92px -54px;
+    }
+    .single.first.closed{
+        background-position:-74px -54px
+    }
+
+    .last.opened{
+        background-position:-92px -36px
+    }
+    .last.closed{
+        background-position:-74px -36px
+    }
+
+
+.ztree li span.button.root_open{background-position:-92px -54px}
+.ztree li span.button.root_close{background-position:-74px -54px}
+.ztree li span.button.roots_open{background-position:-92px 0}
+.ztree li span.button.roots_close{background-position:-74px 0}
+.ztree li span.button.center_open{background-position:-92px -18px}
+.ztree li span.button.center_close{background-position:-74px -18px}
+.ztree li span.button.bottom_open{background-position:-92px -36px}
+.ztree li span.button.bottom_close{background-position:-74px -36px}
+.ztree li span.button.noline_open{background-position:-92px -72px}
+.ztree li span.button.noline_close{background-position:-74px -72px}
+.ztree li span.button.root_docu{ background:none;}
+.ztree li span.button.roots_docu{background-position:-56px 0}
+.ztree li span.button.center_docu{background-position:-56px -18px}
+.ztree li span.button.bottom_docu{background-position:-56px -36px}
+.ztree li span.button.noline_docu{ background:none;}
+
+
+
+
+
+    li ul[role="group"] {
+        / *outline: 1px solid red;* /
+        background: url(http://www.jqueryscript.net/demo/Powerful-Multi-Functional-jQuery-Folder-Tree-Plugin-zTree/css/zTreeStyle/img/line_conn.gif) 0 0 repeat-y;
+    }
+
+    .jqtree-element>span:first-child[role="treeitem"] {
+        background-position: -56px -18px;
+        width: 18px;
+        height: 18px;
+
+        display: inline-block;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-image: url(http://www.jqueryscript.net/demo/Powerful-Multi-Functional-jQuery-Folder-Tree-Plugin-zTree/css/zTreeStyle/img/zTreeStandard.png);
+
+    }
+    span.opened::after{
+        content: '';
+        display: inline-block;
+        margin-left: 18px;
+        background-position: -110px -15px;
+        / *vertical-align: top;* /
+        width: 18px;
+        height: 18px;
+
+        display: inline-block;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-image: url(http://www.jqueryscript.net/demo/Powerful-Multi-Functional-jQuery-Folder-Tree-Plugin-zTree/css/zTreeStyle/img/zTreeStandard.png);
+
+    }
+    
+    ul.jqtree-tree .jqtree-toggler.jqtree-toggler-left {
+        margin-right: 30px;
+    }
+
+    ul.jqtree-tree .jqtree-title.jqtree-title-folder {
+        / * margin-left: 18px; * /
+        line-height: 14px;
+        height: 17px;
+        vertical-align: bottom;
+    }
+
+    ul.jqtree-tree li ul{
+        margin: 0;
+        padding: 0 0 0 18px;
+    }
+
+    / *ul.jqtree-tree .jqtree-title.jqtree-title-folder{
+        margin-left: 18px;
+    }* /
+
+
+
+
+
+.ztree li ul {
+    margin: 0;
+    padding: 0 0 0 18px;list-style: 
+
+}
+
+    .ztree li span.button {
+        line-height: 0;
+        margin: 0;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        vertical-align: middle;
+        border: 0 none;
+        cursor: pointer;
+        outline: none;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-image: url(http://www.jqueryscript.net/demo/Powerful-Multi-Functional-jQuery-Folder-Tree-Plugin-zTree/css/zTreeStyle/img/zTreeStandard.png);
+    }
+    
+    .ztree li span.button.switch {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .ztree li ul.line {
+        background: url(http://www.jqueryscript.net/demo/Powerful-Multi-Functional-jQuery-Folder-Tree-Plugin-zTree/css/zTreeStyle/img/line_conn.gif) 0 0 repeat-y;
+    }
+    
+    .ztree li span.button.roots_open {
+        background-position: -92px 0;
+    }
+
+    */
+    </style>
 </head>
 
 <body translate="no">
-    <div id="tree"></div>
-
+    <div id="tree" style="width: 400px; border: 1px solid #ccc;"></div>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
     <script>
     var paths = [
@@ -63,17 +348,17 @@
             // console.log('item =>', item);
             if (item === null) {
                 var a = isFile(name);
-                if(isFile(name)){
+                if (isFile(name)) {
                     item = {
                         name: name
                     };
-                }else{
+                } else {
                     item = {
                         name: name,
                         children: []
                     };
                 }
-                
+
                 items.push(item);
             }
             if (_.compact(rest).length > 0) {
@@ -83,17 +368,18 @@
         //console.log('items =>', items)
         for (i = 0, l = items.length; i < l; i++) {
             item = items[i];
-            
-            if(item.children){
+
+            if (item.children) {
                 item.children = structurize(item.children);
             }
         }
         return items;
     }
 
-    function isFile(name){
+    function isFile(name) {
         return (/\./).test(name);
     }
+
     function stringify(items) {
         var lines = [];
         for (var i = 0, l = items.length; i < l; i++) {
@@ -107,10 +393,17 @@
         return lines;
     }
     var tree = structurize(paths)
-    // var result = stringify(tree).join("\n");
+        // var result = stringify(tree).join("\n");
     console.log(JSON.stringify(tree, null, '\t'));
 
-    $('#tree').tree({data: tree, autoOpen: true});
+    $('#tree').tree({
+        data: tree,
+        autoOpen: true
+            /*,
+            closedIcon: $('<span class="closed sprite-img"><span class="folder sprite-img"></span></span>'),
+            openedIcon: $('<span class="opened sprite-img"><span class="folder sprite-img"></span></span>')
+            */
+    });
 
     $('#tree').bind(
         'tree.select',
@@ -119,7 +412,7 @@
                 // node was selected
                 var node = event.node;
                 getFolderPath(node);
-            }else{
+            } else {
                 // event.node is null
                 // a node was deselected
                 // e.previous_node contains the deselected node
@@ -127,17 +420,17 @@
         }
     );
 
-    function getFolderPath(node){
+    function getFolderPath(node) {
         var path = node.name;
         var parent = node.parent;
-        
+
         // Add forwad slash for folders
-        if(node.children.length > 0){
+        if (node.children.length > 0) {
             path = path + '/';
         }
 
-        while(parent){
-            if(parent.name){
+        while (parent) {
+            if (parent.name) {
                 path = parent.name + '/' + path;
             }
             parent = parent.parent;
@@ -148,7 +441,6 @@
 
     //# sourceURL=pen.js
     </script>
-    
 </body>
 
 </html>
